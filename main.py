@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as stc
 from PIL import Image, ImageDraw, ImageFont
 import io
 import requests
@@ -9,7 +10,7 @@ face_api_url = 'https://20210603adam.cognitiveservices.azure.com/face/v1.0/detec
 
 st.title('顔認証アプリ')
 
-uploaded_file = st.file_uploader("Choose an image...", type=['jpg','png'])
+uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'png'])
 
 headers = {
     'Content-Type': 'application/octet-stream',
@@ -26,7 +27,6 @@ if uploaded_file is not None:
     with io.BytesIO() as output:
         img.save(output, format="JPEG")
         binary_img = output.getvalue()
-
 
     res = requests.post(face_api_url, params=params, headers=headers, data=binary_img)
     # 複数人いる場合を考慮して複数形
@@ -45,7 +45,14 @@ if uploaded_file is not None:
             t_size = round(rect['width']/4)
         else:
             t_size = 20
-        fnt = ImageFont.truetype("arial.ttf",t_size)
-        draw.multiline_text((rect['left']+(rect['width']/2), rect['top']-32), gender + '\n' + age, fill='red', anchor='ms', font=fnt, spacing=2, align='center')
+        fnt = ImageFont.truetype("arial.ttf", t_size)
+        draw.multiline_text((rect['left']+(rect['width']/2), rect['top']-32), gender + '\n' +
+                            age, fill='red', anchor='ms', font=fnt, spacing=2, align='center')
 
     st.image(img, caption='Uploaded Image.', use_column_width=True)
+
+st.write('Streamlit is cool.')
+st.text('Streamlit is cool.')
+st.markdown('Streamlit is **_really_ cool**.')
+stc.html("<p style='color:red;'> Streamlit is Awesome")
+stc.iframe("https://docs.streamlit.io/en/stable/develop_streamlit_components.html", scrolling=True)
