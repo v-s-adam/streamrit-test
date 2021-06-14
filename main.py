@@ -50,9 +50,3 @@ if uploaded_file is not None:
                             age, fill='red', anchor='ms', font=fnt, spacing=2, align='center')
 
     st.image(img, caption='Uploaded Image.', use_column_width=True)
-
-st.write('Streamlit is cool.')
-st.text('Streamlit is cool.')
-st.markdown('Streamlit is **_really_ cool**.')
-stc.html("<p style='color:red;'> Streamlit is Awesome")
-stc.iframe("https://docs.streamlit.io/en/stable/develop_streamlit_components.html", scrolling=True)
