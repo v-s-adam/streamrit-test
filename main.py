@@ -45,7 +45,7 @@ if uploaded_file is not None:
             t_size = round(rect['width']/4)
         else:
             t_size = 20
-        fnt = ImageFont.truetype("arial.ttf", t_size)
+        fnt = ImageFont.truetype("arial", t_size)
         draw.multiline_text((rect['left']+(rect['width']/2), rect['top']-32), gender + '\n' +
                             age, fill='red', anchor='ms', font=fnt, spacing=2, align='center')
 
